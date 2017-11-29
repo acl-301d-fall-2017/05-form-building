@@ -51,7 +51,7 @@ articleView.handleMainNav = () => {
         $('.tab-content').hide();
         $(`#${$(this).attr('data-content')}`).fadeIn();
     });
-    
+
     $('.main-nav .tab:first').click();
 };
 
@@ -73,7 +73,8 @@ articleView.setTeasers = () => {
 };
 
 // COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// This function is called at the bottom of the index.html page, within a script tag before the end of the <body>. It references the nested functions and runs them only on the index page.
+
 articleView.initIndexPage = () => {
     articleView.populateFilters();
     articleView.handleCategoryFilter();
@@ -85,23 +86,34 @@ articleView.initIndexPage = () => {
 
 
 // COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// REPSONSE HERE
+
 articleView.initNewArticlePage = () => {
     // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
 
-
-    // The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
-    // STRETCH: Hide the export section for now, and show it once we have data to export.
-
-    $('#article-json').on('focus', function () {
-        this.select();
-    });
-
-    // TODO: Add an event handler to update the preview (STRETCH: and the export field) if any inputs change.
-
 };
 
-articleView.create = () => {
+
+// The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
+// STRETCH: Hide the export section for now, and show it once we have data to export.
+
+$('#article-json').on('focus', function () {
+    this.select();
+});
+
+// TODO: Add an event handler to update the preview (STRETCH: and the export field) if any inputs change.
+const newArticle = [];
+
+articleView.create = () =>
+
+    function NewArticleObj (rawDataForm) {
+        this.author = rawDataForm.author;
+        this.authorUrl = rawDataForm.authorUrl;
+        this.title = rawDataForm.title;
+        this.category = rawDataForm.category;
+        this.body = rawDataForm.body;
+        this.publishedOn = rawDataForm.publishedOn;
+
     // TODO: Set up a variable to hold the new article we are creating.
     // Clear out the #articles element, so we can put in the updated preview
 
@@ -117,4 +129,4 @@ articleView.create = () => {
 
     // STRETCH: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
 
-};
+    };

@@ -73,7 +73,7 @@ articleView.setTeasers = () => {
 };
 
 // COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// This function is being called in index.html at the bottom of the page. This will allow us to have control as to when these functions are called.
 articleView.initIndexPage = () => {
     articleView.populateFilters();
     articleView.handleCategoryFilter();
@@ -85,10 +85,10 @@ articleView.initIndexPage = () => {
 
 
 // COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// This new function will be called in the new.html, in order to show a preview of the new article. Function only needs to be called on a page that runs/uses the function.
 articleView.initNewArticlePage = () => {
     // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
-
+    $('.tab-content').show ();
 
     // The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
     // STRETCH: Hide the export section for now, and show it once we have data to export.
@@ -98,6 +98,7 @@ articleView.initNewArticlePage = () => {
     });
 
     // TODO: Add an event handler to update the preview (STRETCH: and the export field) if any inputs change.
+    
 
 };
 

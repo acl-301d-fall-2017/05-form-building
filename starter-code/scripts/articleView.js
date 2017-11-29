@@ -110,19 +110,20 @@ articleView.create = () => {
     $('#new-article').on('change', function() {
         
     // TODO: Instantiate an article based on what's in the form fields:
-        const newArticle = {
+        const newArticle = new Article ({
             title: $('#new-title').val(),
             category: $('#new-category').val(),
             author: $('#new-author').val(),
             authorUrl: $('#new-website').val(),
             body: $('#new-body').val()
-        };
+        });
+
+        const filledTemp = newArticle.toHtml();
 
         // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
-        const templateFiller = Handlebars.compile($('#article-template').html());
-        const filledTemplate = templateFiller(newArticle);
+       
         $('#articles').children().remove();
-        $('#articles').append(filledTemplate);
+        $('#articles').append(filledTemp);
 
     });
 

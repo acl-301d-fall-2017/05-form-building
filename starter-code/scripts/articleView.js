@@ -51,7 +51,7 @@ articleView.handleMainNav = () => {
         $('.tab-content').hide();
         $(`#${$(this).attr('data-content')}`).fadeIn();
     });
-    
+
     $('.main-nav .tab:first').click();
 };
 
@@ -73,7 +73,7 @@ articleView.setTeasers = () => {
 };
 
 // COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// This function is called at the bottom of the index.html file. It waits for the page to load, then runs the functions that are specefic to that page. 
 articleView.initIndexPage = () => {
     articleView.populateFilters();
     articleView.handleCategoryFilter();
@@ -85,9 +85,10 @@ articleView.initIndexPage = () => {
 
 
 // COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// This function is called at the bottom of the new.html file. It waits for the page to load, then runs the functions that are specefic to that page. 
 articleView.initNewArticlePage = () => {
     // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+    $('.tab-content').show();
 
 
     // The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
@@ -104,13 +105,21 @@ articleView.initNewArticlePage = () => {
 articleView.create = () => {
     // TODO: Set up a variable to hold the new article we are creating.
     // Clear out the #articles element, so we can put in the updated preview
-
+    $('#articles').children().remove();
 
     // TODO: Instantiate an article based on what's in the form fields:
-
+    const newArticle = {
+        title: $('#new-title').val(),
+        category: $('#new-category').val(),
+        author: $('#new-author').val(),
+        authorUrl: $('#new-website').val(),
+        body: $('#new-body').val()
+    };
 
     // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
-
+    const templateFiller = Handlebars.compile($('#article-template').html());
+    const filledTemplate = templateFiller(newArticle);
+    $('#articles').append(filledTemplate);
 
     // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
     // $('pre code').each();

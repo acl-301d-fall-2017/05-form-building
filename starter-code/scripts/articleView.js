@@ -121,9 +121,8 @@ articleView.create = () => {
         // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
         const templateFiller = Handlebars.compile($('#article-template').html());
         const filledTemplate = templateFiller(newArticle);
+        $('#articles').children().remove();
         $('#articles').append(filledTemplate);
-        console.log(filledTemplate);
-        console.log($('#new-title').val());
 
     });
 

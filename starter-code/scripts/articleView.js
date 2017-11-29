@@ -28,10 +28,10 @@ articleView.handleAuthorFilter = () => {
         } else {
             $('article').fadeIn();
             $('article.template').hide();
-        }
+
         $('#category-filter').val('');
+        };
     });
-};
 
 articleView.handleCategoryFilter = () => {
     $('#category-filter').on('change', function () {
@@ -44,7 +44,7 @@ articleView.handleCategoryFilter = () => {
         }
         $('#author-filter').val('');
     });
-};
+}
 
 articleView.handleMainNav = () => {
     $('.main-nav').on('click', '.tab', function () {
@@ -98,24 +98,28 @@ articleView.initNewArticlePage = () => {
     });
 
     // TODO: Add an event handler to update the preview (STRETCH: and the export field) if any inputs change.
+    $('#new-article').on('change',function(){
+        console.log (change);
+    });
+    articleView.initNewArticlePage();
     
 
-};
 
 articleView.create = () => {
     // TODO: Set up a variable to hold the new article we are creating.
+    const newArticle = articleCreate;
     // Clear out the #articles element, so we can put in the updated preview
-
+    $('#articles').hide();
 
     // TODO: Instantiate an article based on what's in the form fields:
-
+    Article.prototype.toHtml = function (){
 
     // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
-
+    const fillTemplate = Handlebars.compile($('#article-template').html());
+    return fillTemplate(this);
+};
 
     // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
     // $('pre code').each();
 
-    // STRETCH: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-
-};
+    // STRETCH: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js//

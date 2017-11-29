@@ -91,13 +91,13 @@ articleView.initNewArticlePage = () => {
 
 
     // The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
-    // TODO: Hide the export section for now, and show it once we have data to export.
+    // STRETCH: Hide the export section for now, and show it once we have data to export.
 
     $('#article-json').on('focus', function () {
         this.select();
     });
 
-    // STRETCH: Add an event handler to update the preview and the export field if any inputs change.
+    // TODO: Add an event handler to update the preview (STRETCH: and the export field) if any inputs change.
 
 };
 
@@ -109,7 +109,7 @@ articleView.create = () => {
     // TODO: Instantiate an article based on what's in the form fields:
 
 
-    // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
+    // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
 
 
     // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():

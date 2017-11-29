@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/modules.css">
     <!-- STRETCH: To fully incorporate the highlighting library "hljs" we need to fill the empty link tag below to refer to a CSS file that will handle our text highlighting -->
-    <link>
+    <link rel="stylesheet" href="vendor/styles/default.css">
     <script id="article-template" type="text/x-handlebars-template">
       <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
         <header>
@@ -61,7 +61,7 @@
                     <input type="text" id="new-author" placeholder="Author Name">
                     <input type="text" id="new-website" placeholder="Author Website">
                     <input type="text" id="new-category" placeholder="Category">
-                    <input type="checkbox" id="new-is-published"><label>Published</label>
+                    <input type="checkbox" id="new-is-published"><label id="pub">Published</label>
                </fieldset>
            </form>
       </section>
@@ -85,6 +85,8 @@
     <script src="/scripts/blogArticles.js"></script>
     <script src="/scripts/article.js"></script>
     <script src="/scripts/articleView.js"></script>
+    <script src="vendor/styles/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     <script>
       articleView.initNewArticlePage();
       articleView.create();

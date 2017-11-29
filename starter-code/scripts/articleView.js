@@ -108,7 +108,7 @@ articleView.create = () => {
     $('#articles').children().remove();
     
     $('#new-article').on('change', function() {
-        
+    hljs.configure({useBR:true});    
     // TODO: Instantiate an article based on what's in the form fields:
         const newArticle = new Article ({
             title: $('#new-title').val(),

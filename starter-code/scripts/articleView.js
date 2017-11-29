@@ -90,14 +90,14 @@ articleView.initNewArticlePage = () => {
     // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
 
 
-    // The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
+    // STRETCH The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
     // TODO: Hide the export section for now, and show it once we have data to export.
 
     $('#article-json').on('focus', function () {
         this.select();
     });
 
-    // STRETCH: Add an event handler to update the preview and the export field if any inputs change.
+    // TODO Add an event handler to update the preview and the export field if any inputs change.
 
 };
 

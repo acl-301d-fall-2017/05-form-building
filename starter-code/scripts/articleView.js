@@ -103,10 +103,15 @@ articleView.initNewArticlePage = () => {
 
 articleView.create = () => {
     // []TODO: Set up a variable to hold the new article we are creating.
+    let newArticle = {};
     // Clear out the #articles element, so we can put in the updated preview
+    $('#articles').empty();
 
 
     // []TODO: Instantiate an article based on what's in the form fields:
+    $('#new-article :input').each(function(){
+        console.log($( this ).val());
+    });
 
 
     // []TODO: Use our interface to the Handlebars template to put this new article into the DOM:

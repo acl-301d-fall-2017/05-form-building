@@ -106,20 +106,26 @@ articleView.create = () => {
     // TODO: Set up a variable to hold the new article we are creating.
     // Clear out the #articles element, so we can put in the updated preview
     $('#articles').children().remove();
-
+    
+    $('#new-article').on('change', function() {
+        
     // TODO: Instantiate an article based on what's in the form fields:
-    const newArticle = {
-        title: $('#new-title').val(),
-        category: $('#new-category').val(),
-        author: $('#new-author').val(),
-        authorUrl: $('#new-website').val(),
-        body: $('#new-body').val()
-    };
+        const newArticle = {
+            title: $('#new-title').val(),
+            category: $('#new-category').val(),
+            author: $('#new-author').val(),
+            authorUrl: $('#new-website').val(),
+            body: $('#new-body').val()
+        };
 
-    // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
-    const templateFiller = Handlebars.compile($('#article-template').html());
-    const filledTemplate = templateFiller(newArticle);
-    $('#articles').append(filledTemplate);
+        // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
+        const templateFiller = Handlebars.compile($('#article-template').html());
+        const filledTemplate = templateFiller(newArticle);
+        $('#articles').append(filledTemplate);
+        console.log(filledTemplate);
+        console.log($('#new-title').val());
+
+    });
 
     // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
     // $('pre code').each();

@@ -51,7 +51,7 @@ articleView.handleMainNav = () => {
         $('.tab-content').hide();
         $(`#${$(this).attr('data-content')}`).fadeIn();
     });
-    
+
     $('.main-nav .tab:first').click();
 };
 
@@ -72,8 +72,8 @@ articleView.setTeasers = () => {
     });
 };
 
-// COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// [X]COMMENT: Where is this function called? Why?
+// It is being called at the very bottom of the body of index.html inside a script tag. We want it to load after the dom is ready.
 articleView.initIndexPage = () => {
     articleView.populateFilters();
     articleView.handleCategoryFilter();
@@ -84,10 +84,10 @@ articleView.initIndexPage = () => {
 
 
 
-// COMMENT: Where is this function called? Why?
+// []COMMENT: Where is this function called? Why?
 // PUT YOUR RESPONSE HERE
 articleView.initNewArticlePage = () => {
-    // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+    // []TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
 
 
     // The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
@@ -97,19 +97,19 @@ articleView.initNewArticlePage = () => {
         this.select();
     });
 
-    // TODO: Add an event handler to update the preview (STRETCH: and the export field) if any inputs change.
+    // []TODO: Add an event handler to update the preview (STRETCH: and the export field) if any inputs change.
 
 };
 
 articleView.create = () => {
-    // TODO: Set up a variable to hold the new article we are creating.
+    // []TODO: Set up a variable to hold the new article we are creating.
     // Clear out the #articles element, so we can put in the updated preview
 
 
-    // TODO: Instantiate an article based on what's in the form fields:
+    // []TODO: Instantiate an article based on what's in the form fields:
 
 
-    // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
+    // []TODO: Use our interface to the Handlebars template to put this new article into the DOM:
 
 
     // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():

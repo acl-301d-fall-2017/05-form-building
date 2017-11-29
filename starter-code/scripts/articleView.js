@@ -108,7 +108,7 @@ articleView.create = () => {
     $('#articles').children().remove();
     
     $('#new-article').on('change', function() {
-    hljs.configure({useBR:true});    
+       
     // TODO: Instantiate an article based on what's in the form fields:
         const newArticle = new Article ({
             title: $('#new-title').val(),
@@ -125,6 +125,10 @@ articleView.create = () => {
         $('#articles').children().remove();
         $('#articles').append(filledTemp);
 
+        $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+            hljs.configure({useBR: true}); 
+        });
     });
 
     // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():

@@ -84,10 +84,10 @@ articleView.initIndexPage = () => {
 
 
 
-// []COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// [x]COMMENT: Where is this function called? Why?
+// it was called in newHtml at the end because we didnt want it to run on the index.
 articleView.initNewArticlePage = () => {
-    // []TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+    // [x]TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
 
 
     // The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
@@ -102,8 +102,8 @@ articleView.initNewArticlePage = () => {
 };
 
 articleView.create = () => {
-    $('#new-artcile').on('change', function() {
-    // []TODO: Set up a variable to hold the new article we are creating.
+    $('#new-article :input').on('change', function() {
+    // [x]TODO: Set up a variable to hold the new article we are creating.
         let newArticle = new Article ({ // eslint-disable-line
             title: $('#new-title').val(),
             body: $('#new-body').val(),
@@ -113,17 +113,18 @@ articleView.create = () => {
         });
         // Clear out the #articles element, so we can put in the updated preview
         $('#articles').empty();
+
+        // [x]TODO: Use our interface to the Handlebars template to put this new article into the DOM:
+        
         const filledTemp = newArticle.toHtml();
         $('#articles').append(filledTemp);
 
-        // []TODO: Instantiate an article based on what's in the form fields:
+        // [x]TODO: Instantiate an article based on what's in the form fields:
         $('#new-article :input').each(function(){
             console.log($( this ).val());
         });
         console.log(newArticle);
     });
-    // []TODO: Use our interface to the Handlebars template to put this new article into the DOM:
-
 
     // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
     // $('pre code').each();

@@ -86,11 +86,9 @@ articleView.initIndexPage = () => {
 
 
 // COMMENT: Where is this function called? Why?
-// REPSONSE HERE
+// The below function is called in the new.html and, when it functions correctly, will initialize a new page for each new article.
 
 articleView.initNewArticlePage = () => {
-    articleView.create();
-
     // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
 
     // The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
@@ -101,41 +99,54 @@ articleView.initNewArticlePage = () => {
     });
 
     // TODO: Add an event handler to update the preview (STRETCH: and the export field) if any inputs change.
+    $('#articles').on('keyPress', function() {
 
+    });
 };
 
 
 articleView.create = () => {
+    // TODO: DONE: Set up a variable to hold the new article we are creating.
     const newArticle = {};
 
-    // TODO:DONE Set up a variable to hold the new article we are creating.
-    // Clear out the #articles element, so we can put in the updated preview
-
+    // DONE: Clear out the #articles element, so we can put in the updated preview
+    $('#new-article').empty();
 
     // TODO: Instantiate an article based on what's in the form fields:
 
-    // reverse-order
-    // render article on the page by calling .toHtml
-    // create a new Article (object that does not correspond to anything on the page)
     // select element that has form data (jQuery to select all elements in form and iterate over those)
-    let inputs = $('#new-article :input');
-    console.log(inputs);
+    const inputs = $('#new-article :input');
+    //console.log(inputs);
 
     // get the info from the form 
     inputs.each(function() {
-        console.log($(this).val() );
+    //    console.log($(this).val() );
+
+    // create a new Article (object that does not correspond to anything on the page)
+        rawData.forEach(articleObject => inputs.push(new Article(articleObject)));
+
+        // render article on the page by calling .toHtml
+        inputs.forEach(articleObject => $('#articles').append(newArticle.toHtml()));
+
+        // fill in newArticle object with properties
+        $('#new-article :input').html($(this).val());
     });
-
-    // fill in newArticle object with properties
-
-
     // STRETCH: Pass the article body into the marked.js library to format our Markdown input
 
     // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
+    Article.prototype.toHtml = function () {
+        const articleView = Handlebars.compile($('#new-article-template').html());
 
-    // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-    // $('pre code').each();
+        this.daysAgo = parseInt((new Date() - new Date(this.publishedOn)) / 60 / 60 / 24 / 1000);
+        this.publishStatus = this.publishedOn ? `published ${this.daysAgo} days ago` : '(draft)';
 
-    // STRETCH: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
+        return articleView(this);
+    };
+    // STRETCH: Pass the article body into the marked.js library to format our Markdown input
 
 };
+
+// STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
+// $('pre code').each();
+
+// STRETCH: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:

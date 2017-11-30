@@ -19,9 +19,9 @@
           <div class="byline">
             By <address><a href="{{authorUrl}}">{{author}}</a></address>
             {{publishStatus}}
-          </div>
+            </div>
         </header>
-        <section class="article-body">{{{body}}}</section>
+        <section id="write">{{{body}}}</section>
         <a href="#" class="read-on">Read on &rarr;</a>
       </article>
     </script>
@@ -40,7 +40,7 @@
         <div class="icon-menu"></div>
         <ul>
           <!-- STRETCH: In the same way that we enabled tab navigation on index.html, we can do the same on this page utilizing these elements. -->
-          <li class="tab" data-content="write"><a href="#" class="icon-plus"> Write</a></li>
+          <li class="tab" data-content="write"><a href="#new-article" class="icon-plus"> Write</a></li>
           <li class="tab" data-content="articles"><a href="#" class="icon-checkmark"> Preview</a></li>
         </ul>
       </nav>
@@ -89,11 +89,15 @@
     <script src="/scripts/articleView.js"></script>
     <script>
       // TODO: We will need to call a function here to initialize the behaviors on this page, once we get them built out. Why?
+      // We are calling our functions here because we are only wanting the form and the new article preview to populate on this page. 
+      articleView.initNewArticlePage = () => {
+        articleView.create();
+      };
       // (Look at the bottom of index.html as a reference. Since we are now using our JS on two different HTML pages that have different needs as to what parts of the code they utilize, we need to build a function that inializes each page.)
       //  Hint: Look in articleView.js for a function that does this.
 
       // COMMENT: What is this function doing? Why do we need it?
-      // PUT YOUR RESPONSE HERE
+      // This funtion is initializing the page to accept the new article, which is being created as the form is being filled.
     </script>
   </body>
 </html>

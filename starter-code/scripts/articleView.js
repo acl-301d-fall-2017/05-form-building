@@ -2,7 +2,6 @@
 
 const articleView = {};
 
-
 articleView.populateFilters = () => {
     $('article').each(function () {
         let val = $(this).find('address a').text();
@@ -101,22 +100,34 @@ articleView.initNewArticlePage = () => {
     });
 
     // TODO Add an event handler to update the preview and the export field if any inputs change.
-    $('#new-article :input').on('change', function() {
-        console.log("HEy there");
-    })
+    $('#new-article :input').on('input', function() {
+        $('#articles').html();
+    });
 
 };
 
 articleView.create = () => {
-    // TODO: Set up a variable to hold the new article we are creating.
+    // TODO DONE: Set up a variable to hold the new article we are creating.
     // Clear out the #articles element, so we can put in the updated preview
+    $('#articles').html('');
 
+    // TODO DONE: Instantiate an article based on what's in the form fields:
 
-    // TODO: Instantiate an article based on what's in the form fields:
+    const article = new Article({
+        title: $('#new-title').val(),
+        body: $('#new-body').val(),
+        author: $('#new-author').val(),
+        authorUrl: $('#new-website').val(),
+        category: $('#new-category').val(),
+    });
 
+    // let published = $('#published').is(':checked');
 
-    // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
+    const filledTemplate = article.toHtml();
 
+    // TODO DONE: Use our interface to the Handblebars template to put this new article into the DOM:
+
+    $('#articles').html(filledTemplate);
 
     // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
     // $('pre code').each();

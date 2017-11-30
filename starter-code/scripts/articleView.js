@@ -103,7 +103,13 @@ articleView.initNewArticlePage = () => {
 
 articleView.create = () => {
     // []TODO: Set up a variable to hold the new article we are creating.
-    let newArticle = {};
+    let newArticle = {
+        title: $('#new-title').val(),
+        body: $('#new-body').val(),
+        author: $('#new-author').val(),
+        authorUrl: $('#new-website').val(),
+        category: $('#new-category').val(),
+    };
     // Clear out the #articles element, so we can put in the updated preview
     $('#articles').empty();
 
@@ -112,7 +118,7 @@ articleView.create = () => {
     $('#new-article :input').each(function(){
         console.log($( this ).val());
     });
-
+    console.log(newArticle);
 
     // []TODO: Use our interface to the Handlebars template to put this new article into the DOM:
 

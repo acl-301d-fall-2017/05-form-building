@@ -102,24 +102,26 @@ articleView.initNewArticlePage = () => {
 };
 
 articleView.create = () => {
+    $('#new-artcile').on('change', function() {
     // []TODO: Set up a variable to hold the new article we are creating.
-    let newArticle = {
-        title: $('#new-title').val(),
-        body: $('#new-body').val(),
-        author: $('#new-author').val(),
-        authorUrl: $('#new-website').val(),
-        category: $('#new-category').val(),
-    };
-    // Clear out the #articles element, so we can put in the updated preview
-    $('#articles').empty();
+        let newArticle = new Article ({ // eslint-disable-line
+            title: $('#new-title').val(),
+            body: $('#new-body').val(),
+            author: $('#new-author').val(),
+            authorUrl: $('#new-website').val(),
+            category: $('#new-category').val()
+        });
+        // Clear out the #articles element, so we can put in the updated preview
+        $('#articles').empty();
+        const filledTemp = newArticle.toHtml();
+        $('#articles').append(filledTemp);
 
-
-    // []TODO: Instantiate an article based on what's in the form fields:
-    $('#new-article :input').each(function(){
-        console.log($( this ).val());
+        // []TODO: Instantiate an article based on what's in the form fields:
+        $('#new-article :input').each(function(){
+            console.log($( this ).val());
+        });
+        console.log(newArticle);
     });
-    console.log(newArticle);
-
     // []TODO: Use our interface to the Handlebars template to put this new article into the DOM:
 
 
@@ -127,5 +129,4 @@ articleView.create = () => {
     // $('pre code').each();
 
     // STRETCH: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-
 };

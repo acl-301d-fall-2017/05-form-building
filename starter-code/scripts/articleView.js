@@ -99,35 +99,35 @@ articleView.initNewArticlePage = () => {
         this.select();
     });
 
-    // TODO Add an event handler to update the preview and the export field if any inputs change.
-    $('#new-article :input').on('input', function() {
-        $('#articles').html();
-    });
-
+    // TODO DONE Add an event handler to update the preview and the export field if any inputs change.
+    articleView.create();
 };
 
 articleView.create = () => {
     // TODO DONE: Set up a variable to hold the new article we are creating.
     // Clear out the #articles element, so we can put in the updated preview
     $('#articles').html('');
-
+    
     // TODO DONE: Instantiate an article based on what's in the form fields:
-
-    const article = new Article({
-        title: $('#new-title').val(),
-        body: $('#new-body').val(),
-        author: $('#new-author').val(),
-        authorUrl: $('#new-website').val(),
-        category: $('#new-category').val(),
+    
+    $('#new-article :input').on('change input', function() {
+        const article = new Article({
+            title: $('#new-title').val(),
+            body: $('#new-body').val(),
+            author: $('#new-author').val(),
+            authorUrl: $('#new-website').val(),
+            category: $('#new-category').val(),
+            publishedOn: ($('#published').is(':checked') ? new Date() : false)
+        });
+            
+    
+    
+        const filledTemplate = article.toHtml();
+    
+        // TODO DONE: Use our interface to the Handblebars template to put this new article into the DOM:
+    
+        $('#articles').html(filledTemplate);
     });
-
-    // let published = $('#published').is(':checked');
-
-    const filledTemplate = article.toHtml();
-
-    // TODO DONE: Use our interface to the Handblebars template to put this new article into the DOM:
-
-    $('#articles').html(filledTemplate);
 
     // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
     // $('pre code').each();

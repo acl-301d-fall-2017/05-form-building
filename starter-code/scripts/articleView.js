@@ -89,8 +89,8 @@ articleView.initIndexPage = () => {
 // REPSONSE HERE
 
 articleView.initNewArticlePage = () => {
-    articleView.create();    
-    
+    articleView.create();
+
     // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
 
     // The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
@@ -104,9 +104,9 @@ articleView.initNewArticlePage = () => {
 
 };
 
-const newArticle = [];
 
 articleView.create = () => {
+    const newArticle = {};
 
     // TODO:DONE Set up a variable to hold the new article we are creating.
     // Clear out the #articles element, so we can put in the updated preview
@@ -117,16 +117,21 @@ articleView.create = () => {
     // reverse-order
     // render article on the page by calling .toHtml
     // create a new Article (object that does not correspond to anything on the page)
-    // fill in newArticle object with properties
-    // get the info from the form 
     // select element that has form data (jQuery to select all elements in form and iterate over those)
     let inputs = $('#new-article :input');
     console.log(inputs);
 
+    // get the info from the form 
+    inputs.each(function() {
+        console.log($(this).val() );
+    });
 
-        // STRETCH: Pass the article body into the marked.js library to format our Markdown input
-        
-        // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
+    // fill in newArticle object with properties
+
+
+    // STRETCH: Pass the article body into the marked.js library to format our Markdown input
+
+    // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
 
     // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
     // $('pre code').each();

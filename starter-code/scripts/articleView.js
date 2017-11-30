@@ -106,20 +106,25 @@ articleView.initNewArticlePage = () => {
 
 articleView.create = () => {
 //      //TODO: Set up a variable to hold the new article we are creating.
-    const newArticle = new Article({
-        title:$('#new-title').val(),
-        category:$('#new-category').val(),
-        author:$('#new-author').val(),
-        authorUrl:$('#new-website').val(),
-        publishedOn:$('#new-is-published').val(),
-        body:$('#new-body').val()
-    });
-
-
-    const fillTemplate = newArticle.toHtml();
-    //     // Clear out the #articles element, so we can put in the updated preview
     $('#articles').children().remove();
-    $('#articles').append(fillTemplate);
+    $('#new-article').on('change',function(){
+
+
+        const newArticle = new Article({
+            title:$('#new-title').val(),
+            category:$('#new-category').val(),
+            author:$('#new-author').val(),
+            authorUrl:$('#new-website').val(),
+            publishedOn:$('#new-is-published').is( ':checked'),
+            body:$('#new-body').val()
+        });
+
+
+        const fillTemplate = newArticle.toHtml();
+        //     // Clear out the #articles element, so we can put in the updated preview
+        $('#articles').children().remove();
+        $('#articles').append(fillTemplate);
+    });
 //     // TODO: Instantiate an article based on what's in the form fields:
 
 //     // // TODO: Use our interface to the Handlebars template to put this new article into the DOM:

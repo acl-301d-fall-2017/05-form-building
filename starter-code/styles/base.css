@@ -45,7 +45,8 @@ a:visited {
 /*FORM STYLES
 =======================================*/
 label {
-  font-size: 3em;
+  font-size: 1em;
+  padding-left: 5px;
 }
 
 input {

@@ -82,34 +82,21 @@ articleView.initIndexPage = () => {
     articleView.setTeasers();
 };
 
-
-
-// COMMENT: Where is this function called? Why?
-// This function is called at the bottom of the new.html file. It waits for the page to load, then runs the functions that are specefic to that page. 
 articleView.initNewArticlePage = () => {
-    // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
     $('.tab-content').show();
-
-
-    // The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
-    // STRETCH: Hide the export section for now, and show it once we have data to export.
 
     $('#article-json').on('focus', function () {
         this.select();
     });
 
-    // TODO: Add an event handler to update the preview (STRETCH: and the export field) if any inputs change.
-
+    articleView.createArticlePreview();
 };
 
-articleView.create = () => {
-    // TODO: Set up a variable to hold the new article we are creating.
-    // Clear out the #articles element, so we can put in the updated preview
+articleView.createArticlePreview = () => {
     $('#articles').children().remove();
-    
+
     $('#new-article').on('change', function() {
-       
-    // TODO: Instantiate an article based on what's in the form fields:
+
         const newArticle = new Article ({
             title: $('#new-title').val(),
             category: $('#new-category').val(),
@@ -120,8 +107,6 @@ articleView.create = () => {
 
         const filledTemp = newArticle.toHtml();
 
-        // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
-       
         $('#articles').children().remove();
         $('#articles').append(filledTemp);
 
@@ -130,10 +115,26 @@ articleView.create = () => {
             hljs.configure({useBR: true}); 
         });
     });
-
-    // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-    // $('pre code').each();
-
-    // STRETCH: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-
 };
+
+//               objects and () => {}
+
+const fakeArticleView = {
+    createArticlePreview: function () {
+        console.log('in a regular function, this is ', this);
+    }
+};
+
+fakeArticleView.initNewArticlePage = () => {
+    console.log('in an arrow function, this is', this);
+};
+
+console.log('the fakeArticleView obj:', fakeArticleView);
+
+function globalFun () {
+    // global function!
+
+    function notGlobalFun () {
+        // not global function
+    }
+}

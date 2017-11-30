@@ -87,47 +87,45 @@ articleView.initIndexPage = () => {
 // COMMENT: Where is this function called? Why?
 // This new function will be called in the new.html, in order to show a preview of the new article. Function only needs to be called on a page that runs/uses the function.
 articleView.initNewArticlePage = () => {
-    // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
-    $('.tab-content').show ();
+    // // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+     $('.tab-content').show ();
 
-    // The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
-    // STRETCH: Hide the export section for now, and show it once we have data to export.
+    // // The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
+    // // STRETCH: Hide the export section for now, and show it once we have data to export.
 
-    $('#article-json').on('focus', function () {
-        this.select();
-    });
+     $('#article-json').on('focus', function () {
+         this.select();
+     });
 
-    // TODO: Add an event handler to update the preview (STRETCH: and the export field) if any inputs change.
-    $('#new-article').on('change',function(){
-        console.log (change);
-    });
-    articleView.initNewArticlePage();
-    
-
-
-articleView.create = () => {
-    // TODO: Set up a variable to hold the new article we are creating.
-    const newArticle = (rawDataObj) {
-        this.author = rawDataObj.new-author;
-        this.authorUrl = rawDataObj.new-authorUrl;
-        this.title = rawDataObj.new-title;
-        this.category = rawDataObj.new-category;
-        this.body = rawDataObj.new-body;
-        this.publishedOn = rawDataObj.new-is-published;
-    }
-    // Clear out the #articles element, so we can put in the updated preview
-    $('#articles').hide();
-
-    // TODO: Instantiate an article based on what's in the form fields:
-
-    Article.prototype.toHtml = function (){
-
-    // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
-    const fillTemplate = Handlebars.compile($('#article-template').html());
-    return fillTemplate(this);
+    // // TODO: Add an event handler to update the preview (STRETCH: and the export field) if any inputs change.
+     $('#new-article').on('change',function(){
+         console.log(change);
+     });
 };
 
-    // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-    // $('pre code').each();
+    
+articleView.create = () => {
+     //TODO: Set up a variable to hold the new article we are creating.
+    const newArticle = new Article({ 
+    title:$('#new-title').val(),
+    category:$('#new-category').val(),
+    author:$('#new-author').val(),
+    authorUrl:$('#new-website').val(),
+    publishedOn:$('#new-is-published').val(),
+    body:$('#new-body').val()
+    });
 
-    // STRETCH: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js//
+
+    const fillTemplate = newArticle.toHtml();
+    // Clear out the #articles element, so we can put in the updated preview
+    $('#articles').children().remove();
+    $('#articles').append(fillTemplate);
+    // TODO: Instantiate an article based on what's in the form fields:
+
+    // // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
+    
+    // // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
+    // // $('pre code').each();
+    
+    // // STRETCH: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js
+};

@@ -83,24 +83,6 @@ articleView.initIndexPage = () => {
 };
 
 
-
-// [x]COMMENT: Where is this function called? Why?
-// it was called in newHtml at the end because we didnt want it to run on the index.
-articleView.initNewArticlePage = () => {
-    // [x]TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
-
-
-    // The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
-    // STRETCH: Hide the export section for now, and show it once we have data to export.
-
-    $('#article-json').on('focus', function () {
-        this.select();
-    });
-
-    // []TODO: Add an event handler to update the preview (STRETCH: and the export field) if any inputs change.
-
-};
-
 articleView.create = () => {
     $('#new-article :input').on('change', function() {
     // [x]TODO: Set up a variable to hold the new article we are creating.
@@ -121,9 +103,7 @@ articleView.create = () => {
 
         // [x]TODO: Instantiate an article based on what's in the form fields:
         $('#new-article :input').each(function(){
-            console.log($( this ).val());
         });
-        console.log(newArticle);
     });
 
     // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
@@ -132,6 +112,8 @@ articleView.create = () => {
     // STRETCH: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
 };
 
+// [x]COMMENT: Where is this function called? Why?
+// it was called in newHtml at the end because we didnt want it to run on the index.
 articleView.initNewArticlePage = () => {
     // [x]TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
     articleView.create();

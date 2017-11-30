@@ -107,11 +107,19 @@ articleView.initNewArticlePage = () => {
 
 articleView.create = () => {
     // TODO: Set up a variable to hold the new article we are creating.
-    const newArticle = articleCreate;
+    const newArticle = (rawDataObj) {
+        this.author = rawDataObj.new-author;
+        this.authorUrl = rawDataObj.new-authorUrl;
+        this.title = rawDataObj.new-title;
+        this.category = rawDataObj.new-category;
+        this.body = rawDataObj.new-body;
+        this.publishedOn = rawDataObj.new-is-published;
+    }
     // Clear out the #articles element, so we can put in the updated preview
     $('#articles').hide();
 
     // TODO: Instantiate an article based on what's in the form fields:
+
     Article.prototype.toHtml = function (){
 
     // TODO: Use our interface to the Handlebars template to put this new article into the DOM:

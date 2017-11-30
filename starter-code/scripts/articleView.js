@@ -89,44 +89,48 @@ articleView.initIndexPage = () => {
 // REPSONSE HERE
 
 articleView.initNewArticlePage = () => {
+    articleView.create();    
+    
     // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+
+    // The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
+    // STRETCH: Hide the export section for now, and show it once we have data to export.
+
+    $('#article-json').on('focus', function () {
+        this.select();
+    });
+
+    // TODO: Add an event handler to update the preview (STRETCH: and the export field) if any inputs change.
 
 };
 
-
-// The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
-// STRETCH: Hide the export section for now, and show it once we have data to export.
-
-$('#article-json').on('focus', function () {
-    this.select();
-});
-
-// TODO: Add an event handler to update the preview (STRETCH: and the export field) if any inputs change.
 const newArticle = [];
 
-articleView.create = () =>
+articleView.create = () => {
 
-    function NewArticleObj (rawDataForm) {
-        this.author = rawDataForm.author;
-        this.authorUrl = rawDataForm.authorUrl;
-        this.title = rawDataForm.title;
-        this.category = rawDataForm.category;
-        this.body = rawDataForm.body;
-        this.publishedOn = rawDataForm.publishedOn;
-
-    // TODO: Set up a variable to hold the new article we are creating.
+    // TODO:DONE Set up a variable to hold the new article we are creating.
     // Clear out the #articles element, so we can put in the updated preview
 
 
     // TODO: Instantiate an article based on what's in the form fields:
 
+    // reverse-order
+    // render article on the page by calling .toHtml
+    // create a new Article (object that does not correspond to anything on the page)
+    // fill in newArticle object with properties
+    // get the info from the form 
+    // select element that has form data (jQuery to select all elements in form and iterate over those)
+    let inputs = $('#new-article :input');
+    console.log(inputs);
 
-    // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
 
+        // STRETCH: Pass the article body into the marked.js library to format our Markdown input
+        
+        // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
 
     // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
     // $('pre code').each();
 
     // STRETCH: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
 
-    };
+};

@@ -135,7 +135,7 @@ articleView.create = () => {
 
     // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
     Article.prototype.toHtml = function () {
-        const articleView = Handlebars.compile($('#new-article-template').html());
+        const articleView = Handlebars.compile($('#article-template').html());
 
         this.daysAgo = parseInt((new Date() - new Date(this.publishedOn)) / 60 / 60 / 24 / 1000);
         this.publishStatus = this.publishedOn ? `published ${this.daysAgo} days ago` : '(draft)';

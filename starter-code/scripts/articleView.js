@@ -28,11 +28,11 @@ articleView.handleAuthorFilter = () => {
         } else {
             $('article').fadeIn();
             $('article.template').hide();
+
+            $('#category-filter').val('');
         }
-        $('#category-filter').val('');
     });
 };
-
 articleView.handleCategoryFilter = () => {
     $('#category-filter').on('change', function () {
         if ($(this).val()) {
@@ -51,7 +51,7 @@ articleView.handleMainNav = () => {
         $('.tab-content').hide();
         $(`#${$(this).attr('data-content')}`).fadeIn();
     });
-    
+
     $('.main-nav .tab:first').click();
 };
 
@@ -72,8 +72,8 @@ articleView.setTeasers = () => {
     });
 };
 
-// COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// // COMMENT: Where is this function called? Why?
+// // This function is being called in index.html at the bottom of the page. This will allow us to have control as to when these functions are called.
 articleView.initIndexPage = () => {
     articleView.populateFilters();
     articleView.handleCategoryFilter();
@@ -84,37 +84,53 @@ articleView.initIndexPage = () => {
 
 
 
-// COMMENT: Where is this function called? Why?
-// PUT YOUR RESPONSE HERE
+// // COMMENT: Where is this function called? Why?
+// // This new function will be called in the new.html, in order to show a preview of the new article. Function only needs to be called on a page that runs/uses the function.
 articleView.initNewArticlePage = () => {
-    // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+//     // // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
+    $('.tab-content').show ();
 
-
-    // The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
-    // TODO: Hide the export section for now, and show it once we have data to export.
+    //     // // The new articles we create will be given to the user as JSON so they can copy/paste it into their source data file.
+    //     // // STRETCH: Hide the export section for now, and show it once we have data to export.
 
     $('#article-json').on('focus', function () {
         this.select();
     });
 
-    // STRETCH: Add an event handler to update the preview and the export field if any inputs change.
+    //     // // TODO: Add an event handler to update the preview (STRETCH: and the export field) if any inputs change.
+    $('#new-article').on('change',function(){
 
+    });
 };
 
+
 articleView.create = () => {
-    // TODO: Set up a variable to hold the new article we are creating.
-    // Clear out the #articles element, so we can put in the updated preview
+//      //TODO: Set up a variable to hold the new article we are creating.
+    $('#articles').children().remove();
+    $('#new-article').on('change',function(){
 
 
-    // TODO: Instantiate an article based on what's in the form fields:
+        const newArticle = new Article({
+            title:$('#new-title').val(),
+            category:$('#new-category').val(),
+            author:$('#new-author').val(),
+            authorUrl:$('#new-website').val(),
+            publishedOn:$('#new-is-published').is( ':checked'),
+            body:$('#new-body').val()
+        });
 
 
-    // TODO: Use our interface to the Handblebars template to put this new article into the DOM:
+        const fillTemplate = newArticle.toHtml();
+        //     // Clear out the #articles element, so we can put in the updated preview
+        $('#articles').children().remove();
+        $('#articles').append(fillTemplate);
+    });
+//     // TODO: Instantiate an article based on what's in the form fields:
 
+//     // // TODO: Use our interface to the Handlebars template to put this new article into the DOM:
 
-    // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
-    // $('pre code').each();
+//     // // STRETCH: Activate the highlighting of any code blocks; look at the documentation for hljs to see how to do this by placing a callback function in the .each():
+    //$('pre code').each();
 
-    // STRETCH: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js:
-
+//     // // STRETCH: Show our export field, and export the new article as JSON, so it's ready to copy/paste into blogArticles.js
 };
